@@ -1,0 +1,12 @@
+/* Keep the app in one normal-flow frame instead of independently anchoring
+   headers/footers to Chrome's sometimes stale layout viewport. */
+@media (max-width: 899px) {
+  html[data-chrome-viewport], html[data-chrome-viewport] body {
+    height: max(100%, var(--chrome-page-height));
+  }
+  html[data-chrome-viewport] .workbook-shell {
+    position: relative;
+    top: var(--chrome-app-top);
+    height: var(--chrome-app-height);
+  }
+}

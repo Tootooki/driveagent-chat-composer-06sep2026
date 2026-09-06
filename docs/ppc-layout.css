@@ -1,0 +1,55 @@
+.module-workspace.is-ppc { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+.ppc-control-panel { --control-radius: 3px; --entry-control-height: 44px; flex: 0 1 auto; min-height: 0; max-height: 55%; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; scrollbar-color: #ffffff #000000; background: #000000; color: #ffffff; border-bottom: 1px solid #ffffff; padding: 8px 10px 10px; font: 700 12px/1.2 Arial, Helvetica, sans-serif; box-sizing: border-box; }
+.ppc-control-panel[hidden], .targets-controls[hidden] { display: none; }
+.ppc-control-panel .page-workspace-rail { position: sticky; top: -8px; z-index: 30; min-height: 42px; padding: 0; margin-bottom: 8px; background: #000000; }
+.ppc-control-panel .workspace-tabs { gap: 6px; }
+.ppc-control-panel .targets-controls { display: grid; gap: 8px; }
+.ppc-control-panel :is(button,input) { box-sizing: border-box; min-height: 38px; background: #000000; color: #ffffff; border: 1px solid #ffffff; border-radius: var(--control-radius); font: inherit; text-align: center; }
+.ppc-control-panel button { display: inline-flex; align-items: center; justify-content: center; padding: 7px 8px; cursor: pointer; touch-action: manipulation; white-space: nowrap; }
+.ppc-control-panel button[aria-pressed="true"], .ppc-control-panel .workspace-tab[aria-current="page"] { color: #000000; background: #ffffff; }
+.ppc-control-panel .workspace-tab { border: 1px solid #ffffff; flex: 0 0 auto; min-height: 38px; border-radius: var(--control-radius); font: inherit; padding: 7px 12px; }
+.ppc-control-panel .workspace-rail-arrow { min-width: 22px; width: 22px; min-height: 38px; flex: 0 0 22px; border: 0; padding: 0; font-size: 24px; }
+.ppc-control-panel .targets-filter-picker { display: grid; gap: 6px; min-width: 0; }
+.ppc-control-panel .target-filter-row { display: flex; flex-wrap: nowrap; gap: 3px; min-width: 0; }
+.ppc-control-panel .targets-filter-picker button { flex: 1 1 auto; min-width: 0; padding-inline: 2px; font-size: 11px; }
+.ppc-control-panel .targets-search { display: block; width: 100%; min-width: 0; height: var(--entry-control-height); min-height: var(--entry-control-height); padding: 8px 10px; text-align: center; color: #000000; background: #ffffff; color-scheme: light; caret-color: #000000; font-size: 16px; }
+.ppc-control-panel .targets-search::placeholder { color: #000000; opacity: 1; }
+.ppc-control-panel .targets-periods { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)) minmax(44px,1fr); width: 100%; gap: 4px; overflow: visible; }
+.ppc-control-panel .targets-periods button { min-width: 0; font: inherit; padding-inline: 2px; }
+.ppc-control-panel .targets-dates { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; width: 100%; min-width: 0; max-width: 100%; align-items: start; }
+/* The wrapper owns each white box so native date controls cannot paint over the gap. */
+.ppc-control-panel .target-date-field { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; min-width: 0; max-width: 100%; min-inline-size: 0; height: var(--entry-control-height); overflow: hidden; border-radius: var(--control-radius); background: #ffffff; text-align: center; }
+.ppc-control-panel .target-date-input { -webkit-appearance: none; appearance: none; position: absolute; inset: 0; z-index: 1; opacity: 0; display: block; box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; min-inline-size: 0; height: 100%; min-height: 0; margin: 0; border: 0; border-radius: inherit; padding: 0 6px; background: transparent; color: #000000; color-scheme: light; font-size: 16px; text-align: center; cursor: pointer; }
+.ppc-control-panel .target-date-value { display: flex; align-items: center; justify-content: center; box-sizing: border-box; width: 100%; height: 100%; padding: 0 6px; border-radius: inherit; color: #000000; font-size: 16px; line-height: 1.2; text-align: center; text-transform: uppercase; white-space: nowrap; pointer-events: none; }
+.ppc-control-panel .target-date-input::-webkit-calendar-picker-indicator { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; cursor: pointer; }
+.ppc-control-panel .target-date-field:focus-within { outline: 2px solid #000000; outline-offset: -3px; }
+.ppc-control-panel .target-date-field.is-date-editing .target-date-input { opacity: 1; }
+.ppc-control-panel .target-date-field.is-date-editing .target-date-value { visibility: hidden; }
+.ppc-control-panel .target-date-field.is-date-editing .target-date-input::-webkit-calendar-picker-indicator { position: static; width: auto; height: auto; }
+.ppc-control-panel .target-date-input::-webkit-date-and-time-value { min-width: 0; padding: 0; margin: 0; text-align: center; }
+.ppc-control-panel .target-date-input::-webkit-datetime-edit { min-width: 0; padding: 0; }
+.ppc-control-panel .target-date-input[aria-invalid="true"], .ppc-control-panel .target-date-input[aria-invalid="true"] + .target-date-value { background: rgb(241, 198, 198); }
+.ppc-control-panel .target-date-error { grid-column: 1 / -1; margin: 0; color: rgb(241, 198, 198); text-align: center; font-size: 12px; line-height: 1.4; }
+.ppc-control-panel .target-date-error[hidden] { display: none; }
+.ppc-control-panel button:focus-visible, .ppc-control-panel input:focus-visible { outline: 2px solid currentColor; outline-offset: -3px; }
+.ppc-content { display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; min-width: 0; overflow: hidden; }
+.ppc-content .targets-workspace { flex: 1 1 0; }
+/* The same slight corners and centered labels apply to the other workspace menus. */
+.menu-backdrop .period-menu :is(.workspace-tab,.workspace-tab:hover,.workspace-tab:active,.workspace-choice,.workspace-choice:hover,.workspace-choice:active) { border-radius: 3px; text-align: center; }
+@media (max-width: 599px) {
+  .ppc-control-panel { font-size: 11px; }
+  .ppc-control-panel .target-filter-row { gap: 2px; }
+  .ppc-control-panel .target-entity-filters button { font-size: clamp(9.5px, 2.7vw, 11px); }
+  .ppc-control-panel .target-attribute-filters button { font-size: clamp(9px, 2.6vw, 11px); padding-inline: 1px; }
+}
+
+.menu-backdrop .period-menu :is(.category-option,.period-option,.layout-option,.label-type-option,.zoom-preset,.zoom-step-button,.apply-view-button) { border-radius: 3px; text-align: center; }
+
+/* One shared category slider keeps identical sizing and selection in every menu. */
+.has-workspace-menu .workspace-menu-rail { --control-radius: 3px; min-height: 42px; gap: 0; font: 700 12px/1.2 Arial, Helvetica, sans-serif; }
+.has-workspace-menu .workspace-menu-rail .workspace-tabs { gap: 6px; }
+.has-workspace-menu .workspace-menu-rail :is(.workspace-tab,.workspace-tab:hover,.workspace-tab:active) { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-height: 38px; padding: 7px 12px; border: 1px solid transparent; border-radius: 3px; background: #000000; color: #ffffff; font: inherit; text-transform: uppercase; white-space: nowrap; box-shadow: none; }
+.has-workspace-menu .workspace-menu-rail .workspace-tab[aria-selected="true"] { background: #ffffff; color: #000000; }
+.has-workspace-menu .workspace-menu-rail :is(.workspace-rail-arrow,.workspace-rail-arrow:hover,.workspace-rail-arrow:active) { width: 22px; min-width: 22px; min-height: 38px; flex: 0 0 22px; padding: 0; border: 0; background: #000000; color: #ffffff; font: 700 24px/1 Arial, sans-serif; }
+.menu-backdrop .period-menu > .workspace-menu-rail { padding: 8px 10px; margin: 0; }
+@media (max-width: 599px) { .has-workspace-menu .workspace-menu-rail { font-size: 11px; } }

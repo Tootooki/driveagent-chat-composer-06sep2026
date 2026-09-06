@@ -1,0 +1,68 @@
+/* Round the continuous frame's outline, not its individual cells.
+   The overlay follows scrolling totals and horizontally frozen columns. */
+.sheet-frame-overlay {
+  position: absolute;
+  z-index: 10;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  contain: strict;
+}
+.sheet-frame-overlay .frame-ink { fill: #000000; }
+.sheet-frame-overlay .frame-cutout { fill: #ffffff; }
+
+.black-column-backplate, .frozen-column-backplate, .black-band-backplate,
+.sheet-bottom-frame { display: none; }
+
+@media (max-width: 899px) {
+  :root { --mobile-frame-radius: 4.5px; }
+  .workbook-shell, .brand-header { border-radius: var(--mobile-frame-radius); }
+  /* Native overflow clipping keeps the bottom contour attached during momentum
+     scrolling, without a script chasing the edge or covering the last row. */
+  .sheet-viewport {
+    clip-path: none;
+    border-radius: 0 0 var(--mobile-frame-radius) var(--mobile-frame-radius);
+    padding-bottom: 1px;
+  }
+  .sheet-bottom-frame {
+    display: block;
+    position: absolute;
+    inset: var(--brand-header-height) 0 var(--mobile-bottom-height);
+    z-index: 11;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    border-radius: 0 0 var(--mobile-frame-radius) var(--mobile-frame-radius);
+    pointer-events: none;
+  }
+  /* Continuous native surfaces beneath individual cells prevent light cracks
+     at fractional grid coordinates. They move with the sheet, not with JS. */
+  .black-column-backplate {
+    display: block; position: absolute; inset: 0 auto 0 0;
+    width: calc(var(--black-columns-width) * var(--sheet-scale));
+    background: #000000; z-index: -1; pointer-events: none;
+  }
+  .frozen-column-backplate {
+    display: block; position: sticky; left: 0;
+    grid-column: 1; grid-row: 1 / -1;
+    width: calc(var(--image-column-width) * var(--sheet-scale));
+    background: #000000; z-index: 2; pointer-events: none;
+  }
+  .freeze-name .frozen-column-backplate { width: calc(var(--frozen-columns-width) * var(--sheet-scale)); }
+  .black-band-backplate {
+    display: block; position: relative; top: auto;
+    grid-column: 1 / -1; background: #000000; z-index: 4;
+    pointer-events: none;
+  }
+  .black-band-backplate.header-backplate { position: sticky; top: 0; z-index: 5; }
+  body[data-active-workspace]:not([data-active-workspace="accounting"]) .sheet-bottom-frame { display: none; }
+}
+
+/* Desktop was explicitly requested to retain its square frame. */
+@media (min-width: 900px) {
+  .sheet-frame-overlay { display: none; }
+}
+@media print {
+  .sheet-frame-overlay { display: none; }
+}
+body.capture-mode .sheet-frame-overlay { display: none; }
+body.capture-mode .sheet-bottom-frame { display: none; }

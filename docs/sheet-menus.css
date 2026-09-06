@@ -1,0 +1,109 @@
+/* Every menu is a normal-flow sibling of the sheet. Only the sheet scrolls
+   when the menu is closed; long control panels have their own bounded scroll. */
+.has-inline-sheet-menus .workbook-shell { display: flex; flex-direction: column; min-height: 0; }
+.has-inline-sheet-menus .brand-header { position: relative; inset: auto; flex: 0 0 var(--brand-header-height); }
+.has-inline-sheet-menus :is(.sheet-viewport,.module-workspace) { position: relative; inset: auto; flex: 1 1 0; min-height: 0; min-width: 0; width: 100%; }
+.has-inline-sheet-menus .module-workspace { padding: 0; }
+.has-inline-sheet-menus .sheet-control-panel { flex: 0 1 auto; max-height: 55%; min-height: 0; padding: 8px 10px 12px; border: 0; overflow-anchor: none; }
+.has-inline-sheet-menus .sheet-control-panel > .workspace-menu-rail { position: sticky; top: -8px; z-index: 30; margin: 0 0 8px; }
+.sheet-control-body { min-width: 0; }
+.sheet-control-panel :is(.workspace-controls,.accounting-controls,.workspace-density) { display: grid; gap: 12px; padding: 0; }
+.sheet-control-panel .workspace-note { margin: 2px 0 0; font-size: 9px; text-align: center; }
+.sheet-control-panel :is(.workspace-choice-group,.accounting-control-group) { min-width: 0; margin: 0; padding: 0; border: 0; }
+.sheet-control-panel :is(.workspace-choice-group,.accounting-control-group) > legend { padding: 0 0 6px; width: 100%; font: 700 10px/1.2 Arial,sans-serif; text-align: center; text-transform: uppercase; }
+.sheet-control-panel :is(.workspace-choice-list,.category-grid,.layout-switch,.label-type-switch) { display: flex; flex-wrap: wrap; gap: 4px; width: 100%; margin: 0; }
+.sheet-control-panel :is(.workspace-choice,.category-option,.period-option,.layout-option,.label-type-option,.zoom-preset,.zoom-step-button) { display: inline-flex; align-items: center; justify-content: center; min-width: 0; min-height: 38px; padding: 8px 6px; border: 0; border-radius: 3px; font: inherit; text-align: center; color: #fff; background: #000; transform: none; box-shadow: none; }
+.sheet-control-panel :is(.workspace-choice-list,.category-grid,.layout-switch,.label-type-switch) > button { flex: 1 1 auto; }
+.sheet-control-panel :is(.category-option,.period-option,.layout-option,.label-type-option,.zoom-preset,.zoom-step-button):is(:hover,:active) { transform: none; border-color: transparent; }
+.sheet-control-panel :is(.category-option,.period-option,.layout-option,.label-type-option,.zoom-preset)[aria-pressed="true"] { background: #fff; color: #000; }
+.sheet-control-panel :is(.category-option,.period-option,.layout-option,.label-type-option) span { font: inherit; text-transform: uppercase; }
+.sheet-control-panel :is(.category-option i,.category-option small,.period-option small,.layout-option small) { display: none; }
+.sheet-control-panel .category-grid { flex-wrap: nowrap; }
+.sheet-control-panel .category-option { flex: 1 1 0; padding-inline: 2px; font-size: 11px; }
+.sheet-control-panel .period-grid { display: grid; grid-template-columns: repeat(9,minmax(0,1fr)); gap: 2px; }
+.sheet-control-panel .period-option { min-width: 0; padding-inline: 1px; font-size: 10px; }
+.sheet-control-panel .zoom-panel { margin: 0; padding: 0; border: 0; border-radius: 0; }
+.sheet-control-panel .zoom-stepper { grid-template-columns: 44px 1fr 44px; gap: 4px; }
+.sheet-control-panel .zoom-step-button { width: 44px; font-size: 22px; }
+.sheet-control-panel .zoom-value { font-size: 16px; letter-spacing: 0; }
+.sheet-control-panel .zoom-presets { margin-top: 4px; gap: 4px; }
+.sheet-control-panel .menu-divider { margin: 0 0 6px; padding: 0; font: 700 10px/1.2 Arial,sans-serif; text-align: center; text-transform: uppercase; }
+.sheet-control-panel .menu-divider::before,.sheet-control-panel .menu-divider::after { display: none; }
+.sheet-control-panel .column-order-settings { width: 100%; }
+.sheet-control-panel .workspace-search:focus::placeholder { color: transparent; }
+.sheet-control-panel .workspace-search::-webkit-search-cancel-button { -webkit-appearance: none; }
+/* A clear native focus ring, with contrasting ink inside selected white buttons. */
+.sheet-control-panel button:focus-visible { outline: 2px solid #fff; outline-offset: -3px; }
+.sheet-control-panel button[aria-pressed="true"]:focus-visible { outline-color: #000; }
+.is-module-sheet { display: flex; flex-direction: column; overflow: hidden; }
+.is-module-sheet .module-table-scroll { flex: 1 1 0; min-height: 0; min-width: 0; overflow: auto; scrollbar-width: auto; scrollbar-color: #fff #000; }
+.is-module-sheet .module-table { width: max-content; min-width: 100%; border-collapse: separate; border-spacing: 0; font: 700 12px/1.25 Arial,sans-serif; background: #fff; }
+.is-module-sheet .module-table :is(th,td) { box-sizing: border-box; height: 34px; min-width: 104px; padding: 5px 8px; border: 1.5px solid #fff; border-radius: 3px; background: #fff; color: #000; text-align: center; vertical-align: middle; }
+.is-module-sheet .module-table thead tr:first-child > th { position: sticky; top: 0; z-index: 5; }
+.is-module-sheet .module-table thead :is(th,td) { border: 0; border-radius: 0; background: #000; color: #fff; }
+.is-module-sheet .module-table .module-totals > td { position: relative; top: auto; }
+.is-module-sheet .module-table tr > :first-child { position: sticky; left: 0; z-index: 2; width: 240px; min-width: 240px; max-width: 240px; background: #000; color: #fff; border: 0; border-radius: 0; text-align: left; }
+.is-module-sheet .module-table thead tr:first-child > :first-child { z-index: 7; }
+.is-module-sheet .module-table .module-totals > :first-child { position: sticky; left: 0; top: auto; z-index: 4; }
+.is-module-sheet .module-table tbody .module-metadata { border-color: #000; border-radius: 0; color: #fff; background: #000; }
+.is-module-sheet .module-table tbody [data-tone="positive"] { background: rgb(183,223,207); }
+.is-module-sheet .module-table tbody [data-tone="negative"] { background: rgb(241,198,198); }
+.module-name-content { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.module-name-text { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.module-info { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 24px; width: 24px; height: 24px; padding: 0; border: 0; border-radius: 50%; background: #fff; color: #000; font: 700 19px/1 Arial,sans-serif; cursor: pointer; }
+.module-info:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.record-detail { border-radius: 3px; }
+.record-detail-fields { margin: 0; padding: 20px; overflow: auto; display: grid; grid-template-columns: 110px minmax(0,1fr); gap: 14px; }
+.record-detail-fields dt { font-size: 10px; }.record-detail-fields dd { margin: 0; overflow-wrap: anywhere; font-weight: 400; }
+.record-detail .action-detail-header h2 { overflow-wrap: anywhere; }
+.is-module-sheet .module-empty { margin: 0; padding: 18px 12px; font-size: 12px; font-weight: 400; }
+.is-module-sheet[data-density="comfortable"] .module-table tbody :is(th,td) { height: 46px; padding-block: 10px; }
+@media (max-width: 899px) {
+  .is-module-sheet .module-table { font-size: 11px; }
+  .is-module-sheet .module-table :is(th,td) { height: 32px; padding-inline: 5px; }
+  .is-module-sheet .module-table tr > :first-child { width: 150px; min-width: 150px; max-width: 150px; }
+  .module-info { width: 22px; height: 22px; flex-basis: 22px; font-size: 17px; }
+  .sheet-control-panel .category-option { font-size: 10px; }
+}
+@media (min-width: 900px) {
+  .has-inline-sheet-menus .workbook-shell { padding-bottom: var(--desktop-bottom-height); }
+  .sheet-control-panel .accounting-controls { grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 28px; }
+  .sheet-control-panel .accounting-control-group:nth-child(-n+2) { grid-column: 1 / -1; }
+  .sheet-control-panel .workspace-controls { grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 28px; }
+  .sheet-control-panel .workspace-search,.sheet-control-panel .workspace-note { grid-column: 1 / -1; }
+}
+.has-inline-sheet-menus .module-workspace.is-ppc > .targets-workspace { flex: 1 1 0; }
+
+/* Accounting stays compact and expands in full; it has no inner scroll area. */
+.has-inline-sheet-menus .sheet-control-panel.is-accounting-menu {
+  flex: 0 0 auto; max-height: none; overflow: visible; padding: 6px 10px 8px;
+}
+.has-inline-sheet-menus .is-accounting-menu > .workspace-menu-rail { position: relative; top: auto; margin-bottom: 6px; }
+.sheet-control-panel .accounting-controls { display: grid; grid-template-columns: repeat(2,minmax(0,1.05fr)) repeat(2,minmax(0,1.2fr)) repeat(2,minmax(0,.75fr)); gap: 4px; }
+.sheet-control-panel .accounting-controls > :is(.ui-search-box,.accounting-products,.accounting-periods,.accounting-dates,.accounting-zoom,.column-order-settings) { grid-column: 1 / -1; }
+.sheet-control-panel .accounting-controls > :is(.accounting-headers,.accounting-freeze,.accounting-labels) { grid-column: span 2; }
+.sheet-control-panel .accounting-control-group > legend { position: absolute; width: 1px; height: 1px; padding: 0; clip-path: inset(50%); overflow: hidden; }
+.sheet-control-panel .accounting-controls .menu-divider { display: none; }
+.sheet-control-panel .accounting-controls button { min-height: 32px; height: 32px; padding: 4px 2px; border: 0; border-radius: var(--control-radius); text-transform: uppercase; }
+.sheet-control-panel .accounting-controls :is(.layout-switch,.label-type-switch) { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 2px; }
+.sheet-control-panel .accounting-headers .layout-switch { grid-template-columns: 1.3fr 1fr; }
+.sheet-control-panel .accounting-freeze .layout-switch { grid-template-columns: 1.4fr 1fr; }
+.sheet-control-panel .accounting-controls .period-grid { grid-template-columns: repeat(8,minmax(0,1fr)) minmax(40px,1fr); }
+.sheet-control-panel .accounting-controls .zoom-panel { display: grid; grid-template-columns: 28px repeat(5,minmax(0,1fr)) 28px; gap: 3px; }
+.sheet-control-panel .accounting-controls :is(.zoom-stepper,.zoom-presets) { display: contents; }
+.sheet-control-panel .accounting-controls .zoom-value { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.sheet-control-panel .accounting-controls .zoom-step-button { width: 28px; grid-row: 1; }
+.sheet-control-panel .accounting-controls #zoom-out { grid-column: 1; }
+.sheet-control-panel .accounting-controls #zoom-in { grid-column: 7; }
+.sheet-control-panel .accounting-controls .zoom-preset { grid-row: 1; }
+.accounting-empty { margin: 12px; text-align: center; }
+.sheet-control-panel .accounting-dates .target-date-error { color: #fff; font-size: 10px; line-height: 1.2; }
+@media (max-height: 440px) {
+  .has-inline-sheet-menus .sheet-control-panel.is-accounting-menu { padding-block: 3px; }
+  .has-inline-sheet-menus .is-accounting-menu > .workspace-menu-rail { min-height: 26px; margin-bottom: 3px; }
+  .is-accounting-menu .workspace-menu-rail button { min-height: 26px; padding-block: 2px; }
+  .sheet-control-panel .accounting-controls { gap: 2px; }
+  .sheet-control-panel .accounting-controls button { height: 24px; min-height: 24px; padding-block: 2px; }
+  .sheet-control-panel .accounting-dates { row-gap: 2px; }
+  .sheet-control-panel .accounting-dates .target-date-error { font-size: 9px; line-height: 11px; }
+}

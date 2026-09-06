@@ -1,0 +1,16 @@
+/* Remove light rules from black interface surfaces; report-cell borders are untouched. */
+.workbook-shell, .brand-header, .mobile-tab-bar, .mobile-tab { border-color: transparent; box-shadow: none; outline: none; }
+.workbook-shell { background: #000000; }
+.mobile-tab:hover, .mobile-tab:focus-visible { border-color: transparent; }
+.brand-header button:focus-visible, .mobile-tab:focus-visible { outline-color: #666666; }
+.ppc-control-panel { border: 0; scrollbar-color: #666666 #000000; }
+.ppc-control-panel :is(button,input), .ppc-control-panel .workspace-tab { border-color: transparent; }
+.ppc-control-panel :is(button,input):focus-visible { outline-color: #666666; }
+.menu-backdrop .period-menu, .menu-backdrop .period-menu *,
+.action-detail, .action-detail *, .action-feedback, .action-feedback * { border-color: transparent !important; box-shadow: none; }
+.menu-backdrop .period-menu button:focus-visible { outline-color: #666666 !important; }
+.workspace-tab:focus-visible, .workspace-rail-arrow:focus-visible { outline-color: #666666 !important; }
+.period-menu-body { scrollbar-color: #666666 #000000; }
+.period-menu-body::-webkit-scrollbar-thumb { background: #666666; }
+/* Use the same uninterrupted light backing on the separate Actions workspace. */
+.actions-table, .actions-table tbody { background: #ffffff; }

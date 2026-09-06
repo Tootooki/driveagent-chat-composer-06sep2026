@@ -1,0 +1,81 @@
+.module-workspace.is-targets { display: flex; padding: 0; overflow: hidden; }
+.targets-workspace { --target-frozen-width: 300px; --target-header-height: 34px; display: flex; flex-direction: column; width: 100%; min-width: 0; min-height: 0; font: 700 12px/1.25 Arial, Helvetica, sans-serif; }
+.targets-workspace button { background: #000000; color: #ffffff; border: 1px solid #ffffff; border-radius: 3px; font: inherit; cursor: pointer; touch-action: manipulation; }
+.targets-workspace button:focus-visible, .targets-scroll:focus-visible { outline: 2px solid currentColor; outline-offset: -3px; }
+.targets-summary { margin: 0; }
+.targets-empty[hidden], .targets-scroll[hidden], .targets-grid-area[hidden], .target-column-resizer[hidden] { display: none; }
+.targets-grid-area { position: relative; flex: 1 1 auto; min-height: 0; min-width: 0; }
+/* Keep sheet edges fixed: contain would still allow iPhone rubber-banding. */
+.targets-scroll { height: 100%; min-height: 0; min-width: 0; overflow: auto; overscroll-behavior: none; -webkit-overflow-scrolling: touch; scrollbar-color: #ffffff #000000; scrollbar-width: auto; }
+.targets-table { width: max-content; min-width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; text-align: left; font: inherit; background: #ffffff; }
+.targets-table th, .targets-table td { box-sizing: border-box; height: 34px; padding: 5px 8px; font: inherit; white-space: nowrap; }
+.targets-table thead th, .targets-table thead td { position: sticky; top: 0; z-index: 5; background: #000000; color: #ffffff; border: 0; text-align: center; }
+.targets-table .targets-column-heading th { height: var(--target-header-height); }
+/* Totals scroll vertically; only the column-name row stays at the top. */
+.targets-table thead .target-totals > * { position: relative; top: auto; z-index: 2; text-align: center; }
+.targets-table thead .target-totals > .target-frozen { position: sticky; top: auto; z-index: 4; }
+.targets-table .target-frozen { position: sticky; left: 0; width: var(--target-frozen-width); min-width: var(--target-frozen-width); max-width: var(--target-frozen-width); z-index: 3; background: #000000; color: #ffffff; border: 0; padding: 0 5px; isolation: isolate; transform: translateZ(0); }
+.targets-table thead .target-frozen { z-index: 7; overflow: hidden; text-overflow: ellipsis; }
+.targets-table .target-meta { min-width: 88px; max-width: 120px; background: #000000; color: #ffffff; border: 0; border-radius: 0; text-align: center; }
+.targets-table .target-meta-type { min-width: 110px; }
+.target-name-content { display: flex; align-items: center; min-width: 0; height: 100%; gap: 3px; }
+.targets-workspace .target-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; border: 0; padding: 0; line-height: 30px; }
+.target-column-resizer { position: absolute; left: calc(var(--target-frozen-width) - 9px); top: 0; bottom: 14px; width: 18px; z-index: 20; cursor: col-resize; touch-action: none; user-select: none; -webkit-user-select: none; }
+/* The resize guide starts below the headers and follows only the data rows. */
+.targets-table tbody .target-frozen::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 1px; background: rgba(255, 255, 255, .4); pointer-events: none; }
+.target-column-resizer:focus-visible { outline: 2px solid #666666; outline-offset: -2px; }
+.is-resizing-target { user-select: none; -webkit-user-select: none; cursor: col-resize; }
+.targets-workspace .target-info { display: grid; place-items: center; min-height: 28px; width: 28px; padding: 2px; border: 0; background: transparent; box-shadow: none; flex: 0 0 28px; }
+.target-info svg { width: 22px; height: 22px; pointer-events: none; }
+.targets-table tbody .target-metric, .targets-table tbody .target-context, .targets-table tbody .target-action-cell { color: #000000; background: #ffffff; border: 1.5px solid #ffffff; border-radius: 3px; background-clip: padding-box; }
+.targets-table .target-metric { min-width: 105px; text-align: right; }
+.targets-table .target-context { min-width: 96px; max-width: 290px; overflow: hidden; text-overflow: ellipsis; }
+.targets-empty { padding: 12px; font-weight: 400; }
+.target-detail-fields { display: grid; grid-template-columns: minmax(100px, 1fr) 2fr; gap: 8px 12px; margin: 0 0 20px; }
+.target-detail-fields dt { font-size: 11px; font-weight: 400; }
+.target-detail-fields dd { margin: 0; overflow-wrap: anywhere; }
+.target-detail-period { border-top: 1px solid #ffffff; padding-top: 12px; }
+.target-detail-period h3 { margin: 0 0 12px; font-size: 13px; overflow-wrap: anywhere; }
+@media (max-width: 899px) {
+  .targets-workspace { --target-frozen-width: 20vw; --target-header-height: 32px; font-size: 11px; }
+  .targets-table .target-frozen { font-size: 10px; }
+  .target-name-content { gap: 2px; }
+  .targets-table th, .targets-table td { height: 32px; padding-inline: 5px; }
+  .targets-table .target-metric { min-width: 94px; }
+  .target-detail-fields { grid-template-columns: 100px 1fr; }
+}
+
+.targets-workspace-rail { min-height: 44px; padding: 2px 4px; }
+.targets-workspace-rail .workspace-tab { flex: 0 0 auto; min-height: 36px; padding: 8px 12px; border: 0; border-radius: 3px; color: #ffffff; background: #000000; font: 700 13.5px/1 Arial, Helvetica, sans-serif; white-space: nowrap; }
+.targets-workspace-rail .workspace-tab[aria-current="page"] { color: #000000; background: #ffffff; }
+.targets-workspace-rail .workspace-rail-arrow { width: 28px; min-width: 28px; min-height: 40px; flex: 0 0 28px; padding: 0; border: 0; font: 700 24px/1 Arial, sans-serif; }
+.targets-workspace-rail .workspace-tab[aria-current="page"]:focus-visible { outline-color: #000000 !important; }
+
+.target-detail-terms { padding-left: 18px; margin-bottom: 18px; overflow-wrap: anywhere; }
+.target-detail-terms li { margin-block: 8px; }
+
+/* White backing fills every rounded data-cell corner instead of exposing black pinholes. */
+.targets-table tbody { background: #ffffff; }
+.targets-table .target-totals > * { background: #000000; color: #ffffff; border: 0; border-radius: 0; }
+.targets-table :is(.target-action-cell, .target-action-heading) { min-width: 144px; width: 144px; max-width: 144px; padding-inline: 4px; }
+.targets-table .target-action-cell .action-cell-content { --action-button-size: 20px; width: 133px; gap: 4px; }
+.targets-workspace .action-circle-button { min-height: 0; border: 0; border-radius: 50%; background: transparent; color: #000000; padding: 0; }
+.targets-workspace .action-circle-button:focus-visible { outline-color: #000000; }
+@media (max-width: 899px) {
+  .targets-table .target-meta { font-size: 10px; padding-inline: 4px; }
+  .targets-table .target-meta-type { min-width: 78px; width: 78px; max-width: 78px; }
+  .targets-table .target-meta-match { min-width: 62px; width: 62px; max-width: 62px; }
+  .targets-table .target-meta-status { min-width: 60px; width: 60px; max-width: 60px; }
+}
+.targets-workspace { --target-meta-width: 286px; }
+.targets-table, .targets-table tbody { background: linear-gradient(to right, #000000 0 calc(var(--target-frozen-width) + var(--target-meta-width)), #ffffff calc(var(--target-frozen-width) + var(--target-meta-width)) 100%); }
+.targets-table thead { background: #000000; }
+.targets-table .target-meta-type { width: 110px; }
+.targets-table .target-meta-match, .targets-table .target-meta-status { width: 88px; }
+.targets-table .target-action-cell { padding-block: 4px; }
+@media (max-width: 899px) {
+  .targets-workspace { --target-meta-width: 200px; }
+  .targets-table .target-meta-type { width: 78px; }
+  .targets-table .target-meta-match { width: 62px; }
+  .targets-table .target-meta-status { width: 60px; }
+}

@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <script src="viewport.js?v=120"></script>
+  <script src="chat-design.js?v=130"></script>
+  <title>DRIVE AGENT — Interactive Demo</title>
+  <meta name="description" content="Explore the DRIVE AGENT accounting, PPC and actions demo.">
+  <meta property="og:title" content="DRIVE AGENT — Interactive Demo">
+  <meta property="og:description" content="Explore the DRIVE AGENT interactive workspace demo.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="drive-agent-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#000000">
+  <link rel="stylesheet" href="styles.css?v=113">
+  <link rel="stylesheet" href="chat.css?v=120">
+  <link rel="stylesheet" href="column-resizer.css?v=120">
+  <link rel="stylesheet" href="frame.css?v=113">
+  <link rel="stylesheet" href="workspaces.css?v=108">
+  <link rel="stylesheet" href="pure-colors.css?v=107">
+  <link rel="stylesheet" href="actions.css?v=92">
+  <link rel="stylesheet" href="targets.css?v=108">
+  <link rel="stylesheet" href="ppc-layout.css?v=98">
+  <link rel="stylesheet" href="clean-chrome.css?v=84">
+  <link rel="stylesheet" href="centered-columns.css?v=85">
+  <link rel="stylesheet" href="sheet-menus.css?v=114">
+  <link rel="stylesheet" href="ui-type.css?v=106">
+  <link rel="stylesheet" href="chrome-viewport.css?v=110">
+  <link rel="stylesheet" href="chat-designs.css?v=133">
+  <link rel="stylesheet" href="uniform-rows.css?v=132">
+  <script src="chrome-viewport.mjs?v=110" type="module"></script>
+</head>
+<body>
+  <!-- Threshold only the brand logo, never the product photos or data colors. -->
+  <svg class="color-filter-definitions" xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="logo-pure-bw" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feColorMatrix type="saturate" values="0"/>
+        <feComponentTransfer>
+          <feFuncR type="discrete" tableValues="0 1"/>
+          <feFuncG type="discrete" tableValues="0 1"/>
+          <feFuncB type="discrete" tableValues="0 1"/>
+          <feFuncA type="identity"/>
+        </feComponentTransfer>
+      </filter>
+    </defs>
+  </svg>
+  <main class="workbook-shell">
+    <header class="brand-header" aria-label="DRIVE AGENT main navigation">
+      <button id="header-menu" class="header-button" type="button" data-mobile-menu="settings" aria-label="Menu" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu-backdrop">
+        <span class="desktop-header-content">MENU</span>
+        <svg class="mobile-header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <a id="header-home" class="header-button header-logo" href="./" aria-label="DRIVE AGENT — homepage">
+        <img class="drive-header-wordmark" src="drive-agent-logo.png" alt="DRIVE AGENT" width="2172" height="724" fetchpriority="high">
+      </a>
+      <button id="header-login" class="header-button" type="button" data-mobile-menu="login" aria-label="Login" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu-backdrop">
+        <span class="desktop-header-content">LOGIN</span>
+        <svg class="mobile-header-icon header-person" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0Z"/></svg>
+      </button>
+    </header>
+
+    <section id="sheet" class="sheet-viewport mobile-view" aria-label="ACCOUNTING_ALL_PERIODS_V2 spreadsheet">
+      <div class="loading">Loading ACCOUNTING_ALL_PERIODS_V2…</div>
+    </section>
+
+    <div class="sheet-bottom-frame" aria-hidden="true"></div>
+
+    <nav class="mobile-tab-bar" aria-label="DRIVE AGENT accounting navigation">
+      <button id="mobile-view-toggle" class="mobile-tab" type="button" aria-pressed="true" aria-label="Switch to full three-line view">
+        <span id="view-mode-icon" class="nav-icon nav-icon-view" aria-hidden="true"><svg viewBox="0 0 120 120" focusable="false"><path d="M10 60C32 30 88 30 110 60"/><path d="M10 60C32 90 88 90 110 60"/><circle cx="60" cy="60" r="14"/><g class="view-rays"><path d="M60 14V2"/><path d="M21 23L10 12"/><path d="M99 23L110 12"/></g></svg></span><small>VIEW</small>
+      </button>
+      <button class="mobile-tab" type="button" data-mobile-menu="products">
+        <span class="nav-icon nav-icon-products" aria-hidden="true"><svg viewBox="0 0 120 120" focusable="false"><path d="M7 22H17Q20 22 21 26L32 77Q33 82 38 82H91Q95 82 97 77L106 44Q107 39 102 39H24"/><path class="cart-grid" d="M27 52H103M30 67H99M50 42V79M74 42V79"/><circle class="cart-wheel" cx="41" cy="100" r="5"/><circle class="cart-wheel" cx="89" cy="100" r="5"/></svg></span><small>PRODUCTS</small>
+      </button>
+      <button class="mobile-tab" type="button" data-mobile-menu="periods">
+        <span class="nav-icon nav-icon-period" aria-hidden="true"><svg viewBox="0 0 120 120" focusable="false"><rect x="15" y="21" width="90" height="84" rx="12"/><path d="M15 47H105M36 9V30M84 9V30"/><g class="calendar-dots"><rect x="32" y="61" width="11" height="8" rx="4"/><rect x="54.5" y="61" width="11" height="8" rx="4"/><rect x="77" y="61" width="11" height="8" rx="4"/><rect x="32" y="82" width="11" height="8" rx="4"/><rect x="54.5" y="82" width="11" height="8" rx="4"/><rect x="77" y="82" width="11" height="8" rx="4"/></g></svg></span><small>PERIOD</small>
+      </button>
+      <button id="mobile-settings" class="mobile-tab" type="button" data-mobile-menu="settings">
+        <span class="nav-icon nav-icon-settings" aria-hidden="true"><svg viewBox="0 0 120 120" focusable="false"><g transform="scale(5)"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.09a2 2 0 0 1 1 1.73v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.51a2 2 0 0 1 1-1.73l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2Z"/><circle cx="12" cy="12" r="3"/></g></svg></span><small>SETTINGS</small>
+      </button>
+    </nav>
+
+    <div id="menu-backdrop" class="menu-backdrop" role="presentation" hidden>
+      <aside class="period-menu" role="dialog" aria-modal="true" aria-labelledby="period-menu-title">
+        <div class="period-menu-header">
+          <div><span class="menu-brand">DRIVE AGENT</span><h2 id="period-menu-title">Settings</h2></div>
+          <div class="menu-header-actions">
+            <button id="menu-back" class="menu-back" type="button" aria-label="Back to Settings" hidden>←</button>
+            <button id="menu-close" class="menu-close" type="button" aria-label="Close menu">×</button>
+          </div>
+        </div>
+        <div class="period-menu-body">
+        <section class="menu-section" data-menu-section="login" hidden>
+          <div class="login-notice">
+            <h3>Account login is not connected yet</h3>
+            <p>This public version does not require an account. You can continue viewing the sheet.</p>
+          </div>
+        </section>
+        <div class="settings-shortcuts" data-menu-section="settings" aria-label="Current sheet selections">
+          <button type="button" data-open-panel="products"><span><small>Product</small><span id="selected-category-label">All products</span></span><b>Change</b></button>
+          <button type="button" data-open-panel="periods"><span><small>Period</small><span id="selected-period-label">1 Day</span></span><b>Change</b></button>
+        </div>
+        <section class="menu-section" data-menu-section="products">
+          <div class="category-grid" role="group" aria-label="Product category">
+  <button class="category-option selected" type="button" data-category="all" aria-pressed="true">
+    <i style="background-color:currentColor" aria-hidden="true"></i><span>All products</span><small>All product categories</small>
+  </button>
+  <button class="category-option" type="button" data-category="pistachio" aria-pressed="false">
+    <i style="background-color:currentColor" aria-hidden="true"></i><span>Pistachio</span><small>Pistachio products only</small>
+  </button>
+  <button class="category-option" type="button" data-category="kataifi" aria-pressed="false">
+    <i style="background-color:currentColor" aria-hidden="true"></i><span>Kataifi</span><small>Kataifi products only</small>
+  </button>
+  <button class="category-option" type="button" data-category="choco" aria-pressed="false">
+    <i style="background-color:currentColor" aria-hidden="true"></i><span>Chocos</span><small>Chocolate products only</small>
+  </button>
+  <button class="category-option" type="button" data-category="pumps" aria-pressed="false"><span>Pumps</span><small>Pump products only</small></button>
+  <button class="category-option" type="button" data-category="monitors" aria-pressed="false"><span>Monitors</span><small>Monitor products only</small></button>
+</div>
+        </section>
+        <section class="menu-section" data-menu-section="periods">
+          <div class="period-grid">
+  <button class="period-option" type="button" data-period="all" aria-pressed="false">
+    <span>All periods</span><small>Combined view of every period</small>
+  </button>
+  <button class="period-option selected" type="button" data-period="1d" aria-pressed="true">
+    <span>1 Day</span><small>03sep2026</small>
+  </button>
+  <button class="period-option" type="button" data-period="7d" aria-pressed="false">
+    <span>7 Days</span><small>03jun2026_09jun2026</small>
+  </button>
+  <button class="period-option" type="button" data-period="30d" aria-pressed="false">
+    <span>30 Days</span><small>11may2026_09jun2026</small>
+  </button>
+  <button class="period-option" type="button" data-period="60d" aria-pressed="false">
+    <span>60 Days</span><small>11apr2026_09jun2026</small>
+  </button>
+  <button class="period-option" type="button" data-period="90d" aria-pressed="false">
+    <span>90 Days</span><small>12mar2026_09jun2026</small>
+  </button>
+  <button class="period-option" type="button" data-period="180d" aria-pressed="false">
+    <span>180 Days</span><small>12dec2025_09jun2026</small>
+  </button>
+  <button class="period-option" type="button" data-period="365d" aria-pressed="false">
+    <span>365 Days</span><small>10jun2025_09jun2026</small>
+  </button>
+  <button class="period-option" type="button" data-period="range" aria-pressed="false">
+    <span>Range</span><small>07jun2026_09jun2026</small>
+  </button></div>
+        </section>
+        <section class="menu-section column-order-panel" data-menu-section="column-order">
+          <div class="layout-switch" role="group" aria-label="Column order">
+            <button class="layout-option" type="button" data-layout="metric" aria-pressed="false">
+              <span>By metric</span><small>Sales together, ads together, and so on</small>
+            </button>
+            <button class="layout-option selected" type="button" data-layout="period" aria-pressed="true">
+              <span>By period</span><small>All columns for each period together</small>
+            </button>
+          </div>
+        </section>
+        <section class="menu-section" data-menu-section="settings">
+        <div class="mobile-header-view">
+          <div class="menu-divider"><span>Sheet view</span></div>
+          <div class="layout-switch" role="group" aria-label="Sheet header view">
+            <button class="layout-option selected" type="button" data-header-mode="compact" aria-pressed="true"><span>Compact</span><small>1-line headers</small></button>
+            <button class="layout-option" type="button" data-header-mode="full" aria-pressed="false"><span>Full</span><small>Full header details</small></button>
+          </div>
+        </div>
+        <div class="menu-divider zoom-divider"><span>Spreadsheet zoom</span></div>
+        <section class="zoom-panel" aria-label="Spreadsheet zoom controls">
+          <div class="zoom-stepper">
+            <button id="zoom-out" class="zoom-step-button" type="button" aria-label="Zoom out"><span aria-hidden="true">−</span></button>
+            <output id="zoom-value" class="zoom-value" aria-live="polite">100%</output>
+            <button id="zoom-in" class="zoom-step-button" type="button" aria-label="Zoom in"><span aria-hidden="true">+</span></button>
+          </div>
+          <div class="zoom-presets" role="group" aria-label="Zoom presets">
+            <button class="zoom-preset" type="button" data-zoom="20" aria-pressed="false">20%</button>
+            <button class="zoom-preset" type="button" data-zoom="40" aria-pressed="false">40%</button>
+            <button class="zoom-preset" type="button" data-zoom="60" aria-pressed="false">60%</button>
+            <button class="zoom-preset" type="button" data-zoom="100" aria-pressed="false">100%</button>
+            <button class="zoom-preset selected" type="button" data-zoom="150" aria-pressed="true">150%</button>
+          </div>
+        </section>
+        <div class="menu-divider"><span>Freeze name column</span></div>
+        <div class="layout-switch" role="group" aria-label="Freeze name column">
+          <button class="layout-option selected" type="button" data-name-freeze="regular" aria-pressed="true"><span>Off</span><small>Scrolls with data</small></button>
+          <button class="layout-option" type="button" data-name-freeze="frozen" aria-pressed="false"><span>On</span><small>Stays beside images</small></button>
+        </div>
+        <div class="menu-divider label-type-divider"><span>Label type</span></div>
+        <div class="label-type-switch" role="group" aria-label="Label type">
+          <button class="label-type-option" type="button" data-label-type="sku" aria-pressed="false"><span>SKU</span></button>
+          <button class="label-type-option selected" type="button" data-label-type="name" aria-pressed="true"><span>Name</span></button>
+        </div>
+        <div id="column-order-settings" class="column-order-settings" hidden>
+          <div class="menu-divider layout-divider"><span>Column order</span></div>
+          <div class="layout-switch" role="group" aria-label="Column order">
+            <button class="layout-option" type="button" data-layout="metric" aria-pressed="false">
+              <span>By metric</span><small>Sales together, ads together, and so on</small>
+            </button>
+            <button class="layout-option selected" type="button" data-layout="period" aria-pressed="true">
+              <span>By period</span><small>All columns for each period together</small>
+            </button>
+          </div>
+        </div>
+        </section>
+        </div>
+        <div class="menu-footer">
+          <p id="current-period" class="current-period" hidden>All products · 1 Day · Name · 150% zoom</p>
+          <button id="apply-view" class="apply-view-button" type="button">Apply</button>
+        </div>
+      </aside>
+    </div>
+    <div id="chat-widget" class="chat-widget">
+      <section id="chat-popup" class="chat-popup" role="dialog" aria-modal="false" aria-labelledby="chat-title" tabindex="-1" hidden>
+        <header class="chat-topbar"><h2 id="chat-title">CHAT</h2></header>
+        <nav id="chat-rooms" aria-label="Started conversations" hidden></nav>
+        <div id="chat-conversation">
+          <div id="chat-welcome-art" aria-hidden="true" hidden><img src="chat-art/compass.svg" alt=""></div>
+          <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions" aria-label="Main chat messages"></div>
+          <div id="chat-suggestions" class="chat-suggestions" aria-label="Suggested messages" hidden></div>
+          <section id="chat-settings" aria-label="Chat settings" hidden>
+            <button id="chat-rooms-toggle" type="button" aria-controls="chat-rooms">CONVERSATIONS</button>
+            <button id="chat-read-replies" type="button" aria-pressed="true">READ VOICE REPLIES</button>
+            <label class="chat-setting-field">VOICE<select id="chat-voice"><option value="luna">LUNA</option><option value="orion">ORION</option><option value="athena">ATHENA</option></select></label>
+            <label class="chat-setting-field">SPEED<select id="chat-speed"><option value="0.85">SLOWER</option><option value="1" selected>NORMAL</option><option value="1.2">FASTER</option></select></label>
+            <button id="chat-test-voice" type="button">TEST VOICE</button>
+            <button id="chat-read-last" type="button">READ LAST REPLY</button>
+            <p>Voice and messages are processed by Cloudflare. Only the current conversation is sent. Your Amazon account is not connected.</p>
+          </section>
+        </div>
+        <form id="chat-form" class="chat-composer" hidden>
+          <button id="chat-add" class="composer-icon" type="button" aria-label="Add to message" aria-expanded="false" aria-controls="chat-add-menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+          <label class="chat-sr-only" for="chat-input">Message</label><textarea id="chat-input" rows="1" maxlength="24000" placeholder="Message" enterkeyhint="send" autocomplete="off"></textarea>
+          <button id="chat-dictate" class="composer-icon" type="button" aria-label="Dictate message" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="mic-shape" x="9" y="3" width="6" height="12" rx="3"/><path class="mic-shape" d="M6 11v2a6 6 0 0 0 12 0v-2M12 19v3m-3 0h6"/><rect class="mic-stop" x="6" y="6" width="12" height="12" rx="2"/></svg></button>
+          <button id="chat-submit" type="submit" aria-label="Start live voice"><svg class="composer-send" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-7 7 7-7 7 7"/></svg><span class="voice-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button>
+        </form>
+        <div id="chat-add-menu" class="chat-add-menu" role="group" aria-label="Add to message" hidden></div>
+        <div id="chat-column-resizer" class="column-resizer chat-column-resizer" role="separator" aria-label="Resize chat list" aria-orientation="vertical" aria-controls="chat-rooms" tabindex="0" hidden></div>
+        <footer class="chat-voice-footer">
+          <p id="chat-status" class="chat-voice-status" role="status" aria-live="polite" hidden></p>
+          <div class="chat-voice-controls" aria-label="Voice controls">
+            <button id="chat-settings-toggle" class="chat-voice-button" type="button" aria-label="Chat settings" aria-expanded="false" aria-controls="chat-settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="9" cy="18" r="2"/></svg></button>
+            <button id="chat-live" class="chat-voice-button chat-live-button" type="button" aria-label="Start live voice" aria-pressed="false"><span class="voice-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button>
+            <button id="chat-mic" class="chat-voice-button" type="button" aria-label="Record a voice message" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="mic-shape" x="9" y="3" width="6" height="12" rx="3"/><path class="mic-shape" d="M6 11v2a6 6 0 0 0 12 0v-2M12 19v3m-3 0h6"/><rect class="mic-stop" x="6" y="6" width="12" height="12" rx="2"/></svg></button>
+          </div>
+        </footer>
+      </section>
+      <button id="chat-launcher" class="chat-launcher" type="button" aria-label="Open main chat" aria-haspopup="dialog" aria-controls="chat-popup" aria-expanded="false">
+        <span class="voice-orb" aria-hidden="true"><span class="voice-mist"><i></i><i></i><i></i></span></span>
+        <svg class="chat-dots" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2.5"/><circle cx="12" cy="12" r="2.5"/><circle cx="19" cy="12" r="2.5"/></svg>
+        <svg class="chat-launcher-close" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </main>
+  <script src="app.js?v=132" defer></script>
+  <script src="chat.js?v=133" type="module"></script>
+  <script src="accounting-column-width.mjs?v=120" type="module"></script>
+  <script src="frame.js?v=69" type="module"></script>
+  <script src="workspaces.js?v=132" type="module"></script>
+  <script src="viewport-diagnostics.mjs?v=110" type="module"></script>
+</body>
+</html>

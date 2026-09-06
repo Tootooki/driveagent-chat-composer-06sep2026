@@ -1,0 +1,176 @@
+/* One text scale for the application. Load after component styles. Native
+   editing controls keep a 16px font so focusing them does not zoom an iPhone. */
+:root {
+  --ui-text-size: 11px;
+  --ui-line-height: 14px;
+  --ui-font-family: Arial, Helvetica, sans-serif;
+  --ui-sheet-reference-scale: 1;
+  --compact-header-screen-font: var(--ui-text-size);
+}
+
+body {
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-text-size);
+  line-height: var(--ui-line-height);
+  letter-spacing: 0;
+}
+
+/* Match the wordmark's visible lettering to the surrounding UI text. */
+.brand-header .header-logo {
+  justify-self: center;
+  width: 144px;
+  max-width: 100%;
+}
+.brand-header .header-logo .drive-header-wordmark {
+  width: 144px;
+  max-width: 100%;
+  height: auto;
+}
+@media (min-width: 900px) {
+  .brand-header { grid-template-columns: minmax(80px, 1fr) 144px minmax(80px, 1fr); }
+}
+
+/* Text-bearing controls only: arrows, +/- controls and SVG Info icons keep
+   their own geometry. These overrides also cover legacy accounting menus. */
+.brand-header .header-button,
+.brand-header .desktop-header-content,
+.mobile-tab small,
+.loading,
+.login-notice,
+.login-notice :is(h3,p),
+.ppc-control-panel,
+.workspace-menu-rail,
+.workspace-controls,
+.workspace-density,
+.workspace-density h3,
+.workspace-note,
+.workspace-choice-group legend,
+.workspace-shortcut :is(b,span:not(.workspace-shortcut-arrow)),
+.accounting-control-group legend,
+.sheet-control-panel :is(.workspace-tab,.workspace-choice,.workspace-shortcut),
+.has-workspace-menu .workspace-menu-rail .workspace-tab,
+.menu-backdrop .period-menu :is(h2,.menu-brand,.menu-divider,.current-period,.zoom-value,.zoom-preset,.apply-view-button,.workspace-tab,.workspace-choice,.workspace-shortcut),
+:is(.period-menu,.accounting-controls) :is(.category-option,.period-option,.layout-option,.label-type-option,.view-mode-button),
+:is(.period-menu,.accounting-controls) :is(.category-option,.period-option,.layout-option,.label-type-option,.view-mode-button) :is(span,small),
+.period-menu .settings-shortcuts :is(span,small,b),
+.accounting-controls :is(.zoom-value,.zoom-preset),
+.ppc-control-panel .targets-filter-picker button,
+.ppc-control-panel .targets-periods button,
+.ppc-control-panel .target-date-value,
+.ppc-control-panel .target-date-error {
+  font-family: var(--ui-font-family) !important;
+  font-size: var(--ui-text-size) !important;
+  line-height: var(--ui-line-height) !important;
+  letter-spacing: 0 !important;
+}
+
+/* A 16px native search field is rendered at 11px inside a full-size white
+   44px touch target. Enlarging its unscaled box prevents empty side margins. */
+.ui-search-box {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--control-radius, 3px);
+  background: #ffffff;
+  color: #000000;
+}
+.ui-search-box > input.targets-search {
+  position: absolute;
+  inset: auto;
+  top: 50%;
+  left: 50%;
+  display: block;
+  box-sizing: border-box;
+  width: 145.454546%;
+  min-width: 0;
+  max-width: none;
+  height: 64px;
+  min-height: 64px;
+  max-height: 64px;
+  margin: 0;
+  padding: 16px 14.545455px;
+  border: 0;
+  border-radius: 0;
+  transform: translate(-50%, -50%) scale(.6875);
+  transform-origin: center;
+  background: #ffffff;
+  color: #000000;
+  caret-color: #000000;
+  color-scheme: light;
+  -webkit-text-fill-color: currentColor;
+  font: 700 16px/20.363636px var(--ui-font-family);
+  letter-spacing: 0;
+  text-align: center;
+}
+.ui-search-box > input.targets-search::placeholder { color: #000000; opacity: 1; }
+.ui-search-box:focus-within { outline: 2px solid #000000; outline-offset: -3px; }
+
+/* PPC and other workspace rows share the control text scale. */
+.module-workspace,
+.module-workspace :is(h1,p,.module-demo-badge,.module-table,th,td),
+.targets-workspace,
+.targets-table,
+.targets-table :is(th,td),
+.targets-workspace .target-name,
+.targets-workspace .action-summary,
+.actions-table .action-summary,
+.action-detail,
+.action-detail :is(h2,h3,p,dt,dd,li,span,button),
+.action-feedback,
+.action-feedback :is(span,button) {
+  font-family: var(--ui-font-family) !important;
+  font-size: var(--ui-text-size) !important;
+  line-height: var(--ui-line-height) !important;
+  letter-spacing: 0 !important;
+}
+
+/* Accounting's zoom remains meaningful: its normal 100% desktop / 150%
+   mobile setting renders 11px text, and explicit zoom changes still scale it. */
+.sheet-grid .sheet-cell,
+.sheet-grid .sheet-cell span,
+.sheet-grid.compact-headers .sheet-cell,
+.sheet-grid.compact-headers .sheet-cell span {
+  font-family: var(--ui-font-family) !important;
+  font-size: calc(var(--ui-text-size) * var(--sheet-scale) / var(--ui-sheet-reference-scale)) !important;
+  line-height: calc(var(--ui-line-height) * var(--sheet-scale) / var(--ui-sheet-reference-scale)) !important;
+  letter-spacing: 0 !important;
+}
+@media (max-width: 899px) {
+  :root { --ui-sheet-reference-scale: 1.5; }
+}
+
+/* All chat copy uses the same scale; symbol-only buttons remain legible. */
+#chat-popup,
+#chat-popup :is(h2,h3,p,small,strong,b,label,summary,output),
+#chat-popup :is(.studio-topbar h2 span,.room-avatar,.room-unread,.room-copy,.room-copy span,.sidebar-heading>span,.sidebar-tools span,.chat-room-heading span,.message-attachment,.attachment-chip,.tool-intro,.tool-output,.voice-time),
+#chat-popup :is(.room-button,.tool-tile,.tool-tile span),
+#chat-popup :is(.chat-room-heading,.chat-quickbar,.message-actions,.chat-bottom-tools,.tool-actions,.tool-row,.tool-form) button,
+#chat-popup .chat-tool-content > button {
+  font-family: var(--ui-font-family) !important;
+  font-size: var(--ui-text-size) !important;
+  line-height: var(--ui-line-height) !important;
+  letter-spacing: 0 !important;
+}
+
+/* Unlike the wrapped search, textarea sizing is measured by the composer.
+   Preserve native 16px editing and that measurement; never scale its hit area. */
+#chat-popup :is(input,textarea,select),
+.ppc-control-panel .target-date-input {
+  font-family: var(--ui-font-family) !important;
+  font-size: 16px !important;
+  letter-spacing: 0 !important;
+}
+/* Placeholder copy follows the UI scale; entered text keeps native editing size. */
+#chat-popup :is(input,textarea)::placeholder { font-size: var(--ui-text-size); line-height: var(--ui-line-height); }
+.sheet-control-panel .workspace-controls > .ui-search-box { grid-column: 1 / -1; }
+/* Keep the longest metadata labels separate at the unified 11px size. */
+@media (max-width: 899px) {
+  .targets-workspace { --target-meta-width: 218px; }
+  .targets-table .target-meta-type { width: 84px; min-width: 84px; max-width: 84px; }
+  .targets-table .target-meta-match { width: 74px; min-width: 74px; max-width: 74px; }
+  .targets-table .target-meta-status { width: 60px; min-width: 60px; max-width: 60px; }
+}

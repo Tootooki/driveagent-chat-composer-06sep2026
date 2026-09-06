@@ -1,0 +1,55 @@
+.action-detail {
+  position: fixed; top: calc(var(--brand-header-height) + 8px);
+  bottom: auto; left: 0; right: 0; margin: 0 auto; padding: 0;
+  width: min(640px, calc(100vw - 16px)); max-height: calc(100dvh - var(--brand-header-height) - 24px);
+  color: #ffffff; background: #000000; border: 1px solid #ffffff; border-radius: 0;
+  overflow: hidden; font: 700 14px/1.5 Arial, Helvetica, sans-serif;
+}
+.action-detail:not([open]) { display: none; }
+.action-detail[open] { display: flex; flex-direction: column; }
+.action-detail::backdrop { background: #000000; }
+.action-detail-header { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 12px; padding: 12px; border-bottom: 1px solid #ffffff; }
+.action-detail-header h2 { margin: 0; font: inherit; }
+.action-detail-close { color: #ffffff; background: #000000; border: 1px solid #ffffff; padding: 8px; min-height: 44px; font: inherit; cursor: pointer; }
+.action-detail-body { overflow: auto; overscroll-behavior: contain; padding: 16px; scrollbar-width: none; }
+.action-detail-body::-webkit-scrollbar { display: none; }
+.action-detail-notice { margin: 0 0 20px; font-weight: 400; }
+.action-detail-type { margin: 0 0 12px; }
+.action-detail-todo { margin: 0 0 24px; font-size: 16px; white-space: normal; overflow-wrap: anywhere; }
+
+/* Five independent action slots. Each populated cell owns its text and controls. */
+.action-cell-content { --action-button-size: 32px; display: flex; align-items: center; gap: 8px; width: 100%; min-width: 0; }
+.action-summary { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.action-cell-buttons { display: flex; align-items: center; gap: 4px; flex: 0 0 auto; }
+.action-circle-button {
+  width: var(--action-button-size); height: var(--action-button-size); flex: 0 0 var(--action-button-size);
+  display: grid; place-items: center; padding: 0; margin: 0; min-height: 0;
+  border: 0; border-radius: 50%; background: transparent; color: #000000;
+  cursor: pointer; touch-action: manipulation;
+}
+.action-circle-button img { display: block; width: 100%; height: 100%; pointer-events: none; }
+.action-circle-button:disabled { opacity: 1; cursor: default; }
+.action-circle-button:focus-visible { outline: 2px solid #000000; outline-offset: 1px; }
+.action-circle-button[aria-pressed="true"] { outline: 1px solid #000000; outline-offset: 1px; }
+.actions-table { width: max-content; border-collapse: separate; border-spacing: 0; }
+.actions-table .action-slot-cell { box-sizing: border-box; width: 144px; min-width: 144px; max-width: 144px; color: #000000; background: #ffffff; border: 1.5px solid #ffffff; border-radius: 3px; background-clip: padding-box; }
+.actions-table .action-cell-content { --action-button-size: 20px; width: 127px; gap: 4px; }
+.sheet-grid .sheet-action-cell {
+  padding: 0 calc(4px * var(--sheet-scale)); white-space: nowrap; text-align: left;
+  font: 700 calc(var(--action-font-size) * var(--sheet-scale))/1 Arial, Helvetica, sans-serif;
+  align-items: center; justify-content: flex-start;
+}
+.sheet-action-cell .action-cell-content {
+  --action-button-size: min(calc(18px * var(--sheet-scale)), 26px);
+  gap: calc(4px * var(--sheet-scale));
+}
+.sheet-action-cell .action-cell-buttons { gap: calc(3px * var(--sheet-scale)); }
+.action-feedback {
+  position: absolute; z-index: 110; inset: auto 8px calc(8px + var(--mobile-bottom-height));
+  display: flex; align-items: center; gap: 12px; padding: 8px 12px;
+  color: #ffffff; background: #000000; border: 1px solid #ffffff;
+  font: 13px/1.3 Arial, Helvetica, sans-serif;
+}
+.action-feedback[hidden] { display: none; }
+.action-feedback span { flex: 1; }
+.action-feedback button { min-height: 32px; padding: 4px 8px; border: 1px solid #ffffff; color: #ffffff; background: #000000; font: inherit; cursor: pointer; }

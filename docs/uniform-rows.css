@@ -1,0 +1,39 @@
+/* One shared row unit for the header, sheet menus and spreadsheet rows. */
+:root{--ui-row-density:1;--ui-row-height:max(24px,calc(32px * var(--ui-zoom,1) * var(--ui-row-density)));--ui-row-gap:4px;--brand-header-height:calc(var(--ui-row-height) + env(safe-area-inset-top))}
+@media(max-width:899px){:root{--ui-row-height:calc(var(--mobile-line-height,30px) * var(--ui-row-density))}}
+.brand-header{height:var(--brand-header-height);min-height:0;flex-basis:var(--brand-header-height)}
+.brand-header :is(.header-button,.header-logo){height:var(--ui-row-height);min-height:0;padding-block:0}
+.has-inline-sheet-menus .sheet-control-panel{--entry-control-height:var(--ui-row-height);padding-block:var(--ui-row-gap);}
+.has-inline-sheet-menus .sheet-control-panel > .workspace-menu-rail,.has-workspace-menu .workspace-menu-rail{height:var(--ui-row-height);min-height:var(--ui-row-height);padding-block:0;margin-bottom:var(--ui-row-gap);align-items:center;}
+.has-workspace-menu .workspace-menu-rail :is(.workspace-tab,.workspace-rail-arrow){box-sizing:border-box;height:var(--ui-row-height)!important;min-height:var(--ui-row-height)!important;padding-block:0!important;}
+.has-inline-sheet-menus .sheet-control-panel :is(.accounting-controls,.workspace-controls,.workspace-density,.targets-controls,.targets-filter-picker){gap:var(--ui-row-gap)}
+.has-inline-sheet-menus .sheet-control-panel button{box-sizing:border-box;height:var(--ui-row-height);min-height:var(--ui-row-height);padding-block:0;align-items:center;justify-content:center;}
+.has-inline-sheet-menus .sheet-control-panel :is(.ui-search-box,.target-date-field){box-sizing:border-box;height:var(--ui-row-height);min-height:var(--ui-row-height);}
+/* Preserve a true 16px native editing font while matching the visible text
+   scale and the shared box height, including iPhone focus behavior. */
+.ui-search-box{height:var(--ui-row-height)}
+.ui-search-box > input.targets-search{height:calc(var(--ui-row-height) / .6875);min-height:calc(var(--ui-row-height) / .6875);max-height:calc(var(--ui-row-height) / .6875);padding-block:0;}
+.has-inline-sheet-menus .sheet-control-panel .category-grid{display:flex;flex-wrap:nowrap;gap:2px;}
+.has-inline-sheet-menus .sheet-control-panel .category-option{flex:1 1 auto;min-width:max-content;padding-inline:1px;}
+.has-inline-sheet-menus .sheet-control-panel .accounting-dates{grid-column:1 / -1;gap:var(--ui-row-gap)}
+/* The original zoom widget exists once and is only displayed in SETTINGS. */
+.global-zoom{min-width:0;margin:0;padding:0;border:0;grid-column:1 / -1;}
+.global-zoom .zoom-panel{display:grid;grid-template-columns:28px repeat(5,minmax(0,1fr)) 28px;gap:3px;}
+.global-zoom :is(.zoom-stepper,.zoom-presets){display:contents}
+.global-zoom .zoom-value{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.global-zoom .zoom-step-button{width:28px;grid-row:1;}
+.global-zoom #zoom-out{grid-column:1}.global-zoom #zoom-in{grid-column:7}.global-zoom .zoom-preset{grid-row:1;}
+.global-zoom .zoom-preset{font-family:var(--ui-font-family)!important;font-size:var(--ui-text-size)!important;line-height:var(--ui-line-height)!important;}
+/* Data, total and column-name rows use the same unit as the controls. */
+.sheet-grid .sheet-cell,.sheet-grid .header-cell{height:var(--ui-row-height)!important;min-height:0!important;}
+.sheet-grid,.sheet-grid:not(.compact-headers){--mobile-grid-header-height:var(--ui-row-height);}
+.sheet-grid:not(.compact-headers) :is(.dated-header-value,.live-header-value){display:flex;flex-direction:row;align-items:center;justify-content:center;gap:6px;white-space:nowrap;text-transform:uppercase;}
+.sheet-grid:not(.compact-headers) :is(.dated-header-value,.live-header-value) > span{display:inline;white-space:nowrap;}
+.targets-workspace{--target-header-height:var(--ui-row-height);}
+.targets-table :is(th,td),.is-module-sheet .module-table :is(th,td),.actions-table :is(th,td){height:var(--ui-row-height);padding-block:1px;}
+.is-module-sheet[data-density="comfortable"] .module-table tbody :is(th,td){height:var(--ui-row-height);padding-block:1px;}
+.targets-workspace .target-info{height:calc(var(--ui-row-height) - 6px);min-height:0;padding-block:0;}
+.targets-workspace .target-name{line-height:var(--ui-line-height)}
+.targets-table .target-action-cell{padding-block:1px}
+.targets-table .target-action-cell .action-cell-content,.actions-table .action-cell-content{--action-button-size:min(20px,calc(var(--ui-row-height) - 6px));}
+.chat-widget[data-page="true"]{--chat-row-height:var(--ui-row-height)}

@@ -1,0 +1,24 @@
+/* Center report columns while preserving the first column's existing alignment. */
+.targets-table tr > :not(:first-child),
+.module-table tr > :not(:first-child) {
+  text-align: center;
+  vertical-align: middle;
+}
+/* Symmetric padding keeps module labels centered in the complete column. */
+.module-table tr > :not(:first-child) { padding-inline: 7px; }
+/* Accounting uses grid cells with inline source-sheet alignment. */
+.sheet-grid .sheet-cell:not(.image-column) {
+  text-align: center !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+/* Center each action summary and its three controls together as one row. */
+:is(.targets-table, .module-table, .sheet-grid) .action-cell-content {
+  justify-content: center;
+  margin-inline: auto;
+  text-align: center;
+}
+:is(.targets-table, .module-table, .sheet-grid) .action-summary {
+  flex: 0 1 auto;
+  text-align: center;
+}
